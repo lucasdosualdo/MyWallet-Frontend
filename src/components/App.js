@@ -7,15 +7,15 @@ import Input from './Input';
 import Output from './Output';
 
 export default function App() {
+    
     return (
         <>
         <GlobalStyle/>
         <BrowserRouter>
-            testando
             <Routes>
-                <Route path='/' element={<SignIn/>}/>
-                <Route path='/signup' element = {<SignUp/>}/>
-                <Route path='/myprofile' element = {<MyProfile/>}/>
+                {/* <Route path='/' element={<SignIn/>}/>
+                <Route path='/signup' element = {<SignUp/>}/> */}
+                <Route path='/' element = {<MyProfile/>}/>
                 <Route path = '/input' element = {<Input/>}/>
                 <Route path = '/output' element = {<Output/>}/>
             </Routes>
