@@ -36,10 +36,9 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 	background-color: #8C11BE;
-	padding: 0 24px;
 	width: 100vw;
  	height: 100vh;
-	 font-family: 'Raleway';
+	font-family: 'Raleway';
 }
 ol, ul {
 	list-style: none;
@@ -106,6 +105,18 @@ h5 {
 }
 a{ 
     text-decoration: none;
+}
+
+ion-icon {
+	width: 24px;
+	height: 24px;
+	color: white;
+}
+
+img {
+	width: 24px;
+	height: 24px;
+	color: white;
 }
 `
 export default GlobalStyle;

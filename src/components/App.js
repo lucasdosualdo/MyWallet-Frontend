@@ -5,21 +5,25 @@ import SignIn from './SignIn';
 import MyProfile from './MyProfile';
 import Input from './Input';
 import Output from './Output';
+import UserContext from "../contexts/UserContext";
+import { useState } from 'react';
 
 export default function App() {
-    
+    const [name, setName]=useState('testando');
     return (
         <>
         <GlobalStyle/>
-        <BrowserRouter>
-            <Routes>
-                {/* <Route path='/' element={<SignIn/>}/>
-                <Route path='/signup' element = {<SignUp/>}/> */}
-                <Route path='/' element = {<MyProfile/>}/>
-                <Route path = '/input' element = {<Input/>}/>
-                <Route path = '/output' element = {<Output/>}/>
-            </Routes>
-        </BrowserRouter>
+        <UserContext.Provider value = {{name, setName}}>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/' element={<SignIn/>}/>
+                    <Route path='/signup' element = {<SignUp/>}/>
+                    <Route path='/myprofile' element = {<MyProfile/>}/>
+                    <Route path = '/input' element = {<Input/>}/>
+                    <Route path = '/output' element = {<Output/>}/>
+                </Routes>
+            </BrowserRouter>
+        </UserContext.Provider>   
         </>
     )
 }
