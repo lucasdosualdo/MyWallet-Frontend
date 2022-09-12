@@ -9,10 +9,12 @@ import UserContext from "../contexts/UserContext";
 import { useState } from "react";
 
 export default function App() {
+  const [name, setName] = useState("");
+  const [config, setConfig] = useState({});
   return (
     <>
       <GlobalStyle />
-      <UserContext.Provider>
+      <UserContext.Provider value={{ name, setName, config, setConfig }}>
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<SignIn />} />

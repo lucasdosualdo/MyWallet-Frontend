@@ -1,10 +1,12 @@
 import { FormField } from "./common/FormField";
 import { Container } from "./common/Container";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import UserContext from "../contexts/UserContext";
 import axios from "axios";
 
 export default function SignUp() {
+  const { setName } = useContext(UserContext);
   const [body, setBody] = useState({
     name: "",
     email: "",
@@ -12,9 +14,10 @@ export default function SignUp() {
     confirmPassword: "",
   });
   let navigate = useNavigate();
+
   function signUpForm(e) {
     e.preventDefault();
-    console.log("fui acionado");
+    setName(body.name);
     const request = axios.post("http://localhost:5000/signup", body);
 
     request.then((response) => {
@@ -41,6 +44,7 @@ export default function SignUp() {
           placeholder="Nome"
           required
           onChange={(e) => setBody({ ...body, name: e.target.value })}
+          value={body.name}
         />
         {console.log(body)}
         <input
@@ -48,12 +52,14 @@ export default function SignUp() {
           placeholder="E-mail"
           required
           onChange={(e) => setBody({ ...body, email: e.target.value })}
+          value={body.email}
         />
         <input
           type="password"
           placeholder="Senha"
           required
           onChange={(e) => setBody({ ...body, password: e.target.value })}
+          value={body.password}
         />
         <input
           type="password"
@@ -62,6 +68,7 @@ export default function SignUp() {
           onChange={(e) =>
             setBody({ ...body, confirmPassword: e.target.value })
           }
+          value={body.confirmPassword}
         />
         <button type="submit" onClick={signUpForm}>
           <h3>Cadastrar</h3>
