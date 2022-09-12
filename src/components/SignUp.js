@@ -1,44 +1,75 @@
-import {Form} from './common/Form';
-import { Container } from './common/Container';
-import {Link} from 'react-router-dom';
-import {useContext} from 'react';
-import UserContext from '../contexts/UserContext';
+import { FormField } from "./common/FormField";
+import { Container } from "./common/Container";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import axios from "axios";
 
 export default function SignUp() {
-    const {setName} = useContext(UserContext);
+  const [body, setBody] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  let navigate = useNavigate();
+  function signUpForm(e) {
+    e.preventDefault();
+    console.log("fui acionado");
+    const request = axios.post("http://localhost:5000/signup", body);
 
-    return (
-        <Container>
-            <h1>MyWallet</h1>
-            <Form>
-                <input
-                type='text'
-                placeholder='Nome'
-                required
-                onChange={e=>setName(e.target.value)}
-                />
-                <input
-                type='email'
-                placeholder='E-mail' 
-                required
-                />
-                <input
-                type='password'
-                placeholder='Senha'
-                required
-                />
-                <input
-                type='password'
-                placeholder='Confirme a senha'
-                required
-                />
-                <button>
-                    <h3>Entrar</h3>
-                </button>
-            </Form>
-            <Link to = '/'>
-                <h5>Já tem uma conta? Entre agora!</h5>
-            </Link>
-        </Container>
-    )
+    request.then((response) => {
+      setBody({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+      });
+      navigate("/");
+    });
+
+    request.catch((error) => {
+      alert(error.response.data);
+    });
+  }
+
+  return (
+    <Container>
+      <h1>MyWallet</h1>
+      <FormField>
+        <input
+          type="text"
+          placeholder="Nome"
+          required
+          onChange={(e) => setBody({ ...body, name: e.target.value })}
+        />
+        {console.log(body)}
+        <input
+          type="email"
+          placeholder="E-mail"
+          required
+          onChange={(e) => setBody({ ...body, email: e.target.value })}
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          required
+          onChange={(e) => setBody({ ...body, password: e.target.value })}
+        />
+        <input
+          type="password"
+          placeholder="Confirme a senha"
+          required
+          onChange={(e) =>
+            setBody({ ...body, confirmPassword: e.target.value })
+          }
+        />
+        <button type="submit" onClick={signUpForm}>
+          <h3>Cadastrar</h3>
+        </button>
+      </FormField>
+      <Link to="/">
+        <h5>Já tem uma conta? Entre agora!</h5>
+      </Link>
+    </Container>
+  );
 }

@@ -1,5 +1,5 @@
 import { Container } from './common/Container';
-import {Form} from './common/Form';
+import {FormField} from './common/FormField';
 import styled from 'styled-components';
 
 export default function Output() {
@@ -8,7 +8,7 @@ export default function Output() {
             <Header>
                 <h2>Nova saída</h2>
             </Header>
-        <Form>
+        <FormField>
             <input
             type='number'
             placeholder='Valor'
@@ -22,7 +22,7 @@ export default function Output() {
             <button>
                 <h3>Salvar saída</h3>
             </button>
-        </Form>
+        </FormField>
        </Container>
     )
 }
