@@ -7,6 +7,7 @@ import axios from "axios";
 
 export default function SignIn() {
   const { setConfig } = useContext(UserContext);
+  const { setName } = useContext(UserContext);
   const [body, setBody] = useState({
     email: "",
     password: "",
@@ -18,9 +19,9 @@ export default function SignIn() {
     request.then((response) => {
       setConfig({
         headers: {
-          Authorization: `Bearer ${response.data}`,
-        },
+          Authorization: `Bearer ${response.data.token}`},
       });
+      setName(response.data.name);
       navigate("/myprofile");
     });
 

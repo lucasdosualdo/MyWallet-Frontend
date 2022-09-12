@@ -103,6 +103,12 @@ h5 {
 	justify-content: center;
 	margin-top: 50px;
 }
+
+h6 {
+	color: #000000;
+	font-size: 17px;
+	font-weight: 700;
+}
 a{ 
     text-decoration: none;
 }

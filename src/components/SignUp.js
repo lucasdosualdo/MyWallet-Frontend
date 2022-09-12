@@ -1,12 +1,10 @@
 import { FormField } from "./common/FormField";
 import { Container } from "./common/Container";
 import { Link, useNavigate } from "react-router-dom";
-import { useState, useContext } from "react";
-import UserContext from "../contexts/UserContext";
+import { useState } from "react";
 import axios from "axios";
 
 export default function SignUp() {
-  const { setName } = useContext(UserContext);
   const [body, setBody] = useState({
     name: "",
     email: "",
@@ -17,7 +15,6 @@ export default function SignUp() {
 
   function signUpForm(e) {
     e.preventDefault();
-    setName(body.name);
     const request = axios.post("http://localhost:5000/signup", body);
 
     request.then((response) => {
