@@ -9,14 +9,13 @@ import ShowTransactionsList from "./ShowTransactionsList";
 
 export default function MyProfile() {
   const navigate = useNavigate();
-  const { name } = useContext(UserContext);
+  const { name, setName } = useContext(UserContext);
   const { config } = useContext(UserContext);
   const [transactionsList, setTransactionsList] = useState([]);
 
   useEffect(() => {
     if (name === "") {
       navigate("/");
-      return;
     }
   }, [name, navigate]);
 
@@ -49,7 +48,7 @@ export default function MyProfile() {
     <Container>
       <Header>
         <h2>Olá, {name}</h2>
-        <ion-icon name="log-out-outline"></ion-icon>
+        <ion-icon name="log-out-outline" onClick={() => setName("")}></ion-icon>
       </Header>
       <RegistrationBox transactionsLength={transactionsList.length}>
         {transactionsList.length === 0 ? (
@@ -59,7 +58,6 @@ export default function MyProfile() {
             <ShowTransactionsList transaction={transaction} key={index} />
           ))
         )}
-        {console.log(transactionsList)}
         <BalanceBox balance={balance}>
           <span>
             <h6>SALDO</h6>
